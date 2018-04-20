@@ -24,7 +24,7 @@ func init() {
 }
 
 func main() {
-	db, err := bolt.Open("narcisse_timezones.Db", 0600, nil)
+	db, err := bolt.Open("narcisse_timezones.db", 0600, nil)
 	Db = db
 	if err != nil {
 		fmt.Println("error connecting to database,", err)
