@@ -72,7 +72,7 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 				}
 
 				if timezone == "" {
-					s.ChannelMessageSend(m.ChannelID, "Je connais pas le fuseau horaire de **"+user.Username+"**.")
+					s.ChannelMessageSend(m.ChannelID, "Je ne connais pas le fuseau horaire de **"+user.Username+"**.")
 				} else {
 					loc, err := time.LoadLocation(timezone)
 					if err != nil {

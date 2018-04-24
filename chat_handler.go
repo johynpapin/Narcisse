@@ -1,7 +1,22 @@
 package main
 
-import "github.com/bwmarrin/discordgo"
+import (
+	"github.com/bwmarrin/discordgo"
+	"math/rand"
+	"time"
+)
 
-func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) {
-	s.ChannelMessageSend(m.ChannelID, "Oui ? On me demande ?")
+func init() {
+	rand.Seed(time.Now().Unix())
+}
+
+func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) error {
+	sentences, err := readLines("sentences.txt")
+	if err != nil {
+		return err
+	}
+
+	s.ChannelMessageSend(m.ChannelID, sentences[rand.Intn(len(sentences))])
+
+	return nil
 }
