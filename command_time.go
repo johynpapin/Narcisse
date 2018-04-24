@@ -46,7 +46,7 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 
 		now := time.Now().In(loc)
 
-		s.ChannelMessageSend(m.ChannelID, "Votre fuseau horaire est désormais **"+args[0]+"**, dans ce fuseau horaire, il est **"+now.String()+"**.")
+		s.ChannelMessageSend(m.ChannelID, "Votre fuseau horaire est désormais **"+args[0]+"**, dans ce fuseau horaire, il est **"+now.Format("03/04/05")+"**.")
 	case "get":
 		if len(args) < 1 {
 			s.ChannelMessageSend(m.ChannelID, "Il manque le fuseau horaire. Utilisez la commande `help time` pour accéder à l’aide.")
@@ -60,7 +60,7 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 
 		now := time.Now().In(loc)
 
-		s.ChannelMessageSend(m.ChannelID, "Dans ce fuseau horaire, il est **"+now.String()+"**.")
+		s.ChannelMessageSend(m.ChannelID, "Dans ce fuseau horaire, il est **"+now.Format("03/04/05")+"**.")
 	default:
 		if len(m.Mentions) == 0 {
 			s.ChannelMessageSend(m.ChannelID, "Veuillez mentionner au moins un utilisateur.")
@@ -81,10 +81,10 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 
 					now := time.Now().In(loc)
 
-					s.ChannelMessageSend(m.ChannelID, "Dans le fuseau horaire de **"+user.Username+"**, il est **"+now.String()+"**.")
+					s.ChannelMessageSend(m.ChannelID, "Dans le fuseau horaire de **"+user.Username+"**, il est **"+now.Format("03/04/05")+"**.")
 
 					// funny part
-					fmt.Println(now.Hour())
+
 					if now.Hour() > 0 && now.Hour() < 5 {
 						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Mais... Pourquoi t’es encore debout %s ?!", user.Mention()))
 					} else if now.Hour() > 22 {
