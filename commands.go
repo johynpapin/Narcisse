@@ -11,6 +11,7 @@ var commands = make(map[string]command)
 func parseCommand(s *discordgo.Session, m *discordgo.MessageCreate, args []string) error {
 	if len(args) == 0 {
 		s.ChannelMessageSend(m.ChannelID, "Que dois-je faire ? Pour avoir la liste des commandes, utilisez la commande `help`.")
+		return nil
 	}
 
 	if command, exist := commands[strings.ToLower(args[0])]; exist {
