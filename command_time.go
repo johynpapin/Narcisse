@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/bwmarrin/discordgo"
 	"time"
+	"fmt"
 )
 
 func init() {
@@ -81,6 +82,14 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 					now := time.Now().In(loc)
 
 					s.ChannelMessageSend(m.ChannelID, "Dans le fuseau horaire de **"+user.Username+"**, il est **"+now.String()+"**.")
+
+					// funny part
+
+					if now.Hour() > 0 && now.Hour() < 5 {
+						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Mais... Pourquoi t’es encore debout @%s ?!", user.Username))
+					} else if now.Hour() > 22 {u
+						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Hey, @%s, il va être temps d’aller dormir. ;)", user.Username))
+					}
 				}
 			}
 		}
