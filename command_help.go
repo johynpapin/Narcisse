@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/bwmarrin/discordgo"
-	"fmt"
 	"strings"
 )
 
@@ -18,7 +17,7 @@ func helpHelp() string {
 
 func commandHelp(s *discordgo.Session, m *discordgo.MessageCreate, args []string) error {
 	if len(args) == 0 {
-		fmt.Println("== Aide ==")
+		s.ChannelMessageSend(m.ChannelID, "**=== Aide de toutes les commandes ===**")
 		for _, command := range commands {
 			s.ChannelMessageSend(m.ChannelID, command.Help)
 		}
