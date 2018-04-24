@@ -10,9 +10,9 @@ func init() {
 }
 
 func helpTime() string {
-	return "== Aide de la commande `time` ==" +
-		"`time set <fuseau horaire>` définir votre fuseau horaire" +
-		"`time get <fuseau horaire>` récupérer l’heure d’un fuseau horaire" +
+	return "== Aide de la commande `time` ==\n" +
+		"`time set <fuseau horaire>` définir votre fuseau horaire\n" +
+		"`time get <fuseau horaire>` récupérer l’heure d’un fuseau horaire\n" +
 		"`time @user` récupérer l’heure de l’utilisateur user"
 }
 

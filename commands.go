@@ -16,9 +16,9 @@ func parseCommand(s *discordgo.Session, m *discordgo.MessageCreate, args []strin
 
 	if command, exist := commands[strings.ToLower(args[0])]; exist {
 		command.Exec(s, m, args[1:])
+	} else {
+		s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Je n’ai pas compris la commande `%s`, désolé. Pour avoir la liste des commandes, utilisez la commande `help`.", args[0]))
 	}
-
-	s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Je n’ai pas compris la commande `%s`, désolé. Pour avoir la liste des commandes, utilisez la commande `help`.", args[0]))
 
 	return nil
 }

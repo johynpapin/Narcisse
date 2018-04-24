@@ -11,8 +11,8 @@ func init() {
 }
 
 func helpHelp() string {
-	return "== Aide de la commande `help` ==" +
-		"`help` affiche l’aide de toutes les commandes" +
+	return "== Aide de la commande `help` ==\n" +
+		"`help` affiche l’aide de toutes les commandes\n" +
 		"`help <commande>` affiche l’aide de la commande <commande>"
 }
 
