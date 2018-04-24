@@ -86,9 +86,9 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 					// funny part
 					fmt.Println(now.Hour())
 					if now.Hour() > 0 && now.Hour() < 5 {
-						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Mais... Pourquoi t’es encore debout @%s ?!", user.ID))
+						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Mais... Pourquoi t’es encore debout %s ?!", user.Mention()))
 					} else if now.Hour() > 22 {
-						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Hey, @%s, il va être temps d’aller dormir. ;)", user.ID))
+						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Hey, %s, il va être temps d’aller dormir. ;)", user.Mention()))
 					}
 				}
 			}
