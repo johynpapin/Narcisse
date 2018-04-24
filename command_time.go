@@ -84,7 +84,7 @@ func commandSet(s *discordgo.Session, m *discordgo.MessageCreate, args []string)
 					s.ChannelMessageSend(m.ChannelID, "Dans le fuseau horaire de **"+user.Username+"**, il est **"+now.String()+"**.")
 
 					// funny part
-
+					fmt.Println(now.Hour())
 					if now.Hour() > 0 && now.Hour() < 5 {
 						s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("Mais... Pourquoi t’es encore debout @%s ?!", user.Username))
 					} else if now.Hour() > 22 {
