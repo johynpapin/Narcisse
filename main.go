@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"os/signal"
@@ -9,22 +8,16 @@ import (
 
 	"github.com/bwmarrin/discordgo"
 	"strings"
+	"github.com/spf13/viper"
 )
-
-var (
-	token string
-)
-
-func init() {
-	flag.StringVar(&token, "t", "", "Bot Token")
-	flag.Parse()
-}
 
 func main() {
+	loadConfig()
+
 	openStorage()
 	defer closeStorage()
 
-	dg, err := discordgo.New("Bot " + token)
+	dg, err := discordgo.New("Bot " + viper.GetString("token"))
 	if err != nil {
 		fmt.Println("error creating Discord session,", err)
 		return
