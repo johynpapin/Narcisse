@@ -4,6 +4,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"math/rand"
 	"time"
+	"errors"
 )
 
 func init() {
@@ -30,7 +31,9 @@ func sayHello(s *discordgo.Session) error {
 	for _, ch := range chs {
 		if ch.Name == "bot_land" {
 			s.ChannelMessageSend(ch.ID, "Hello World!")
-			break
+			return nil
 		}
 	}
+
+	return errors.New("channel bot_land not found")
 }
