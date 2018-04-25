@@ -30,6 +30,7 @@ func sayHello(s *discordgo.Session) error {
 	for _, ch := range chs {
 		if ch.Name == "bot_land" {
 			s.ChannelMessageSend(ch.ID, "Hello World!")
+			break
 		}
 	}
 }
