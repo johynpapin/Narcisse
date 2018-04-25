@@ -8,3 +8,14 @@ deploy:
   app: narcisse
   on:
     repo: johynpapin/narcisse
+after_success:
+- eval "$(ssh-agent -s)"
+- chmod 600 .travis/deploy.key
+- ssh-add .travis/deploy.key
+- ssh-keyscan 206.189.172.8 >> ~/.ssh/known_hosts
+- git remote add deploy dokku@206.189.172.8:narcisse
+- git config --global push.default simple
+- git push deploy master
+before_install:
+- openssl aes-256-cbc -K $encrypted_26cd080becd9_key -iv $encrypted_26cd080becd9_iv
+  -in deploy.key.enc -out deploy.key -d

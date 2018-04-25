@@ -52,3 +52,6 @@ fabric.properties
 
 # Builds
 narcisse
+
+# Keys
+*.key
