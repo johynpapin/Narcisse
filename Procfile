@@ -1,1 +1,1 @@
-bot: narcisse
+web: narcisse
