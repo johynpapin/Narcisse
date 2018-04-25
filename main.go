@@ -22,8 +22,9 @@ func main() {
 		return
 	}
 
-	dg.AddHandler(messageCreate)
-	dg.AddHandler(guildCreate)
+	dg.AddHandler(handleMessageCreate)
+	dg.AddHandler(handleGuildCreate)
+	dg.AddHandler(handleGuildMemberAdd)
 
 	err = dg.Open()
 	if err != nil {

@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+func handleMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
@@ -22,15 +22,19 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 }
 
-func guildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
+func handleGuildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
 	if event.Guild.Unavailable {
 		return
 	}
 
 	for _, channel := range event.Guild.Channels {
 		if channel.Name == "bot_land" {
-			sayHello(s, channel)
+			sayHelloWorld(s, channel)
 			return
 		}
 	}
+}
+
+func handleGuildMemberAdd(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
+	sayHello(s, event.Member)
 }
