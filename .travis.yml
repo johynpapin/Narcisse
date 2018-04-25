@@ -1,0 +1,10 @@
+language: go
+go:
+- master
+deploy:
+  provider: heroku
+  api_key:
+    secure: Aj6BKTZmm1SXrW4pTnnoJg/AbJylMlcq3L/1Xz33RK8zpfX+LSITohX8Ocpn9SOkT7Tc8XzPM6uOTsA9bLUXsl/W7WZfNwtKmuhiQVF8ZmO1JwUiYLUhIUjx5tnK0I5zCAmYTnFNGDynfHI5fP0CJqf7rRa6qA4OPSewHQs2Ast20wn2LYV+8Z6kkKCVWBbod9RK9j3qDXOtp5uMBY77LqMbXL1vuWLsnBW8AXMe75m4Y7/E3v52t7SWlQDTYSmt3R3vI6uQ63qrESu+9ku9lAguqLlC+UfJs2eRSnHn7fPbFyHzwoFqytWmEJ245RlLLpANEQJE8RErPFUIQCvsYInhwMxZoK0w9VrbR8spPwpMOzZLnGjMaPxUVVJQPlDqjsO3qoI0+2N6X9XXX3/rPOHHOf2X4hOO28k5iMrVZK5YB6z2LjethmiMQ9GPhU+btEHWfYRt+G/s6TG0b1GrElt/zQ6+PwxBryEjThLF+kFPvgyMgh/3P9ch3zz53q8sAs/d0Yu5wUFbefJEp/CuTu353pqL4dsJsOQmP/YU/Twttg9xLlH15ALMcOCKQ820WHRvb/OQN8yylAzFeTmMy0PD6Gso2FJGKqVSz8Q56hdBmjgl1I75eXmdL4q7nRZ5aFRJgT4Q2v7d3hKLEYY6p3LaSNm/DgkSqAkD6q2a7pU=
+  app: narcisse
+  on:
+    repo: johynpapin/narcisse
