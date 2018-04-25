@@ -10,7 +10,7 @@ var db *bolt.DB
 
 func openStorage() error {
 	var err error
-	db, err = bolt.Open("narcisse_timezones.db", 0600, nil)
+	db, err = bolt.Open("narcisse.db", 0600, nil)
 	if err != nil {
 		return err
 	}
