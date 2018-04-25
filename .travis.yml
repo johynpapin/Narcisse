@@ -18,4 +18,4 @@ after_success:
 - git push deploy master
 before_install:
 - openssl aes-256-cbc -K $encrypted_26cd080becd9_key -iv $encrypted_26cd080becd9_iv
-  -in deploy.key.enc -out deploy.key -d
+  -in .travis/deploy.key.enc -out .travis/deploy.key -d
