@@ -23,6 +23,6 @@ func loadConfig() {
 
 	err := viper.ReadInConfig() // Find and read the config file
 	if err != nil { // Handle errors reading the config file
-		log.WithField("error", err).Fatal("error reading the config file")
+		log.WithField("error", err).Warn("error reading the config file")
 	}
 }
