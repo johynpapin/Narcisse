@@ -17,13 +17,19 @@ func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) error {
 		return err
 	}
 
-	s.ChannelMessageSend(m.ChannelID, sentences[rand.Intn(len(sentences))])
+	sayWithTyping(s, m.ChannelID, sentences[rand.Intn(len(sentences))])
 
 	return nil
 }
 
 func sayHelloWorld(s *discordgo.Session, c *discordgo.Channel) {
 	s.ChannelMessageSend(c.ID, "Hello World!")
+}
+
+func sayWithTyping(s *discordgo.Session, cid string, m string) {
+	s.ChannelTyping(cid)
+	time.Sleep(10 * time.Duration(len(m)) * time.Millisecond)
+	s.ChannelMessageSend(cid, m)
 }
 
 func sayHello(s *discordgo.Session, c *discordgo.Member) {
