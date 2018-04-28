@@ -7,6 +7,7 @@ import (
 	"syscall"
 	"github.com/turnage/graw/reddit"
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 var (
@@ -15,6 +16,8 @@ var (
 
 func main() {
 	loadConfig()
+
+	log.Println(viper.GetString("token"))
 
 	openStorage()
 	defer closeStorage()
