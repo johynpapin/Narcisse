@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"time"
 	"fmt"
+	"github.com/spf13/viper"
 )
 
 func init() {
@@ -12,7 +13,7 @@ func init() {
 }
 
 func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) error {
-	sentences, err := readLines("sentences.txt")
+	sentences, err := readLines(viper.GetString("texts.sentences_files"))
 	if err != nil {
 		return err
 	}

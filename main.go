@@ -5,9 +5,12 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"github.com/turnage/graw/reddit"
+	log "github.com/sirupsen/logrus"
+)
 
-	"github.com/bwmarrin/discordgo"
-	"github.com/spf13/viper"
+var (
+	rb reddit.Bot
 )
 
 func main() {
@@ -16,20 +19,18 @@ func main() {
 	openStorage()
 	defer closeStorage()
 
-	dg, err := discordgo.New("Bot " + viper.GetString("token"))
+	dg, err := connectDiscord()
 	if err != nil {
-		fmt.Println("error creating Discord session,", err)
-		return
+		log.WithFields(log.Fields{
+			"error": err,
+		}).Fatal("error connecting to Discord")
 	}
 
-	dg.AddHandler(handleMessageCreate)
-	dg.AddHandler(handleGuildCreate)
-	dg.AddHandler(handleGuildMemberAdd)
-
-	err = dg.Open()
+	rb, err = connectReddit()
 	if err != nil {
-		fmt.Println("error opening connection,", err)
-		return
+		log.WithFields(log.Fields{
+			"error": err,
+		}).Fatal("error connecting to Reddit")
 	}
 
 	fmt.Println("Bot is now running.  Press CTRL-C to exit.")
