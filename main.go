@@ -5,13 +5,12 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"github.com/turnage/graw/reddit"
 	log "github.com/sirupsen/logrus"
 )
 
-var (
+/*var (
 	rb reddit.Bot
-)
+)*/
 
 func main() {
 	loadConfig()
@@ -26,12 +25,12 @@ func main() {
 		}).Fatal("error connecting to Discord")
 	}
 
-	rb, err = connectReddit()
+	/*rb, err = connectReddit()
 	if err != nil {
 		log.WithFields(log.Fields{
 			"error": err,
 		}).Fatal("error connecting to Reddit")
-	}
+	}*/
 
 	fmt.Println("Bot is now running.  Press CTRL-C to exit.")
 	sc := make(chan os.Signal, 1)
