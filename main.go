@@ -6,11 +6,12 @@ import (
 	"os/signal"
 	"syscall"
 	log "github.com/sirupsen/logrus"
+	"github.com/turnage/graw/reddit"
 )
 
-/*var (
+var (
 	rb reddit.Bot
-)*/
+)
 
 func main() {
 	loadConfig()
