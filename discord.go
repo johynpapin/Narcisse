@@ -8,7 +8,7 @@ import (
 )
 
 func connectDiscord() (*discordgo.Session, error) {
-	log.Println(viper.GetString("token"))
+	log.Println("Bot " + viper.GetString("token"))
 
 	dg, err := discordgo.New("Bot " + viper.GetString("token"))
 	if err != nil {
