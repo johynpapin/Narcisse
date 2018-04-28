@@ -4,9 +4,12 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/spf13/viper"
 	"fmt"
+	log "github.com/sirupsen/logrus"
 )
 
 func connectDiscord() (*discordgo.Session, error) {
+	log.Println(viper.GetString("token"))
+
 	dg, err := discordgo.New("Bot " + viper.GetString("token"))
 	if err != nil {
 		return nil, fmt.Errorf("error creating Discord session: %s", err)
