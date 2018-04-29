@@ -13,7 +13,7 @@ func init() {
 }
 
 func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) error {
-	sentences, err := readLines(viper.GetString("texts.sentences_files"))
+	sentences, err := readLines(viper.GetString("texts.sentences_file"))
 	if err != nil {
 		return err
 	}
