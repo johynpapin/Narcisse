@@ -4,6 +4,7 @@ import (
 	"github.com/coreos/bbolt"
 	"github.com/bwmarrin/discordgo"
 	"fmt"
+	"strconv"
 )
 
 var db *bolt.DB
@@ -26,8 +27,14 @@ func createBuckets() error {
 	return db.Update(func(tx *bolt.Tx) error {
 		_, err := tx.CreateBucketIfNotExists([]byte("timezones"))
 		if err != nil {
-			return fmt.Errorf("error creating bucket: %s", err)
+			return fmt.Errorf("error creating timezones bucket: %s", err)
 		}
+
+		_, err = tx.CreateBucketIfNotExists([]byte("counter"))
+		if err != nil {
+			return fmt.Errorf("error creating counter bucket: %s", err)
+		}
+
 		return nil
 	})
 }
@@ -55,4 +62,52 @@ func getTimezoneByUser(user *discordgo.User) (string, error) {
 	})
 
 	return timezone, err
+}
+
+func incrementCounter() (int, error) {
+	counter := 1
+
+	err := db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("counter"))
+		v := b.Get([]byte("counter"))
+
+		if v != nil {
+			vi, err := strconv.Atoi(string(v))
+			if err != nil {
+				return err
+			}
+
+			counter = vi + 1
+		}
+
+		b.Put([]byte("counter"), []byte(strconv.Itoa(counter)))
+
+		return nil
+	})
+
+	return counter, err
+}
+
+func decrementCounter() (int, error) {
+	counter := -1
+
+	err := db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("counter"))
+		v := b.Get([]byte("counter"))
+
+		if v != nil {
+			vi, err := strconv.Atoi(string(v))
+			if err != nil {
+				return err
+			}
+
+			counter = vi - 1
+		}
+
+		b.Put([]byte("counter"), []byte(strconv.Itoa(counter)))
+
+		return nil
+	})
+
+	return counter, err
 }

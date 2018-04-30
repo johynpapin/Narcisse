@@ -17,7 +17,7 @@ func handleMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if err != nil {
 			s.ChannelMessageSend(m.ChannelID, "Désolé, j’ai rencontré un problème interne.")
 		}
-	} else if ch, _ := s.Channel(m.ChannelID); ch.Name == "bot_land" && strings.Contains(strings.ToLower(m.ContentWithMentionsReplaced()), "narcisse") {
+	} else {
 		handleChat(s, m)
 	}
 }
