@@ -3,8 +3,12 @@
 A simple discord bot that manages time zones.
 
 ## Usage
-`!n time Europe/Paris`
+`!n help`
 
-`!n set Europe/Paris`
+`!n help time`
 
-`!n @username`
+`!n time set Europe/Paris`
+
+`!n time get Europe/Paris`
+
+`!n time @username`
