@@ -40,9 +40,9 @@ func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) error {
 
 			sayWithTyping(s, m.ChannelID, strconv.Itoa(counter))
 		}
-
-		return nil
 	}
+
+	return nil
 }
 
 func sayHelloWorld(s *discordgo.Session, c *discordgo.Channel) {
