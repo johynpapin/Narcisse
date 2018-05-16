@@ -15,32 +15,34 @@ func init() {
 }
 
 func handleChat(s *discordgo.Session, m *discordgo.MessageCreate) error {
-	if ch, _ := s.Channel(m.ChannelID); ch.Name == "bot_land" && strings.Contains(strings.ToLower(m.ContentWithMentionsReplaced()), "narcisse") {
-		sentences, err := readLines(viper.GetString("texts.sentences_file"))
-		if err != nil {
-			return err
+	if ch, _ := s.Channel(m.ChannelID); ch.Name == "bot_land" {
+		if strings.Contains(strings.ToLower(m.ContentWithMentionsReplaced()), "narcisse") {
+			sentences, err := readLines(viper.GetString("texts.sentences_file"))
+			if err != nil {
+				return err
+			}
+
+			sayWithTyping(s, m.ChannelID, sentences[rand.Intn(len(sentences))])
 		}
 
-		sayWithTyping(s, m.ChannelID, sentences[rand.Intn(len(sentences))])
+		if strings.Contains(m.Content, "+") {
+			counter, err := incrementCounter()
+			if err != nil {
+				return err
+			}
+
+			sayWithTyping(s, m.ChannelID, strconv.Itoa(counter))
+		} else if strings.Contains(m.Content, "-") {
+			counter, err := decrementCounter()
+			if err != nil {
+				return err
+			}
+
+			sayWithTyping(s, m.ChannelID, strconv.Itoa(counter))
+		}
+
+		return nil
 	}
-
-	if strings.Contains(m.Content, "+") {
-		counter, err := incrementCounter()
-		if err != nil {
-			return err
-		}
-
-		sayWithTyping(s, m.ChannelID, strconv.Itoa(counter))
-	} else if strings.Contains(m.Content, "-") {
-		counter, err := decrementCounter()
-		if err != nil {
-			return err
-		}
-
-		sayWithTyping(s, m.ChannelID, strconv.Itoa(counter))
-	}
-
-	return nil
 }
 
 func sayHelloWorld(s *discordgo.Session, c *discordgo.Channel) {
